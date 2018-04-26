@@ -1,0 +1,64 @@
+<template>
+  <el-container>
+      <navMenu></navMenu>
+    <el-container>
+      <el-header>
+        <h1 style="margin: 0;">网吧管理系统</h1>
+        <div></div>
+      </el-header>
+      <el-main>
+        <router-view/>
+      </el-main>
+    </el-container>
+  </el-container>
+</template>
+
+<script>
+  import navMenu from '../components/navMenu/nav'
+
+  export default {
+    data () {
+      return {
+        openMenuIndex: '1-1'
+      }
+    },
+    components: {
+      navMenu
+    },
+    methods: {},
+    mounted () {
+    }
+  }
+
+</script>
+
+<style scoped lang="scss">
+  .el-container {
+    width: 100%;
+    height: 100%;
+  }
+
+  .el-header, .el-footer {
+    background-color: #B3C0D1;
+    color: #333;
+    text-align: center;
+    line-height: 60px;
+  }
+
+  .el-footer {
+    background-color: #B3C0D1;
+    color: #333;
+    text-align: center;
+    line-height: 60px;
+  }
+
+  .el-main {
+    background-color: #E9EEF3;
+    color: #333;
+    padding: 0;
+  }
+
+  body > .el-container {
+    margin-bottom: 40px;
+  }
+</style>
