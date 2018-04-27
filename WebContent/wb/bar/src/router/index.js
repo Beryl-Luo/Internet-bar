@@ -1,13 +1,16 @@
 import Vue from 'vue'
 import Router from 'vue-router'
+import home from './home'
 
 Vue.use(Router)
 
-export default new Router({
-  routes: [
+export default[
     {
-      path: '/',
-      component: () => import('../packages/ui/container')
+      path: '/admin',
+      component: () => import('../packages/ui/container'),
+      children:[
+        ...home
+      ]
     },
     {
       path: '/login',
@@ -15,4 +18,3 @@ export default new Router({
       component: () => import('../view/admin/login/login')
     }
   ]
-})
