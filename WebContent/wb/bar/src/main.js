@@ -7,7 +7,7 @@ import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
 
 Vue.use(ElementUI)
-
+/* 阻止启动生产消息 */
 Vue.config.productionTip = false
 
 /* eslint-disable no-new */

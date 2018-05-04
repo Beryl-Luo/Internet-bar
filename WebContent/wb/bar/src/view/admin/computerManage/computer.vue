@@ -1,12 +1,11 @@
 <template>
-<div class="userManage">
-  <h1>用户管理</h1>
-</div>
+  <div class="computer"></div>
+
 </template>
 
 <script>
     export default {
-        name: "index"
+        name: 'computer'
     }
 </script>
 

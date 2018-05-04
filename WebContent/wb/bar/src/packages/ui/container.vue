@@ -17,6 +17,7 @@
   import navMenu from '../components/navMenu/nav'
 
   export default {
+    name: 'container',
     data () {
       return {
         openMenuIndex: '1-1'
