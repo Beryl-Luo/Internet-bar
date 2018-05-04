@@ -1,10 +1,10 @@
 export default[
   {
-    path: '/',
+    path: 'user',
     component: () => import('../view/admin/userManage/user')
   },
   {
-    path: '/computer',
+    path: 'computer',
     component: () => import('../view/admin/computerManage/computer')
   }
 ]

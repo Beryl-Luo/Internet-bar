@@ -1,34 +1,7 @@
 <template>
   <div class="header">
-    <el-row>
-      <el-col :span="14" :offset="5">
-        <div class="grid-content bg-purple">
-          <div class="head-left">
-            <div class="head-nav">
-              <router-link class="head-link" to="/" :style="[path == '' ? active : '']">首页</router-link>
-            </div>
-            <div class="head-nav">
-              <router-link class="head-link" to="/payment" :style="[path == 'payment' ? active : '']">其他</router-link>
-            </div>
-            <div class="head-nav">
-              <router-link class="head-link" to="/about" :style="[path == 'about' ? active : '']">关于</router-link>
-            </div>
-          </div>
-          <div class="head-right">
-            <div class="head-nav-login">
-              <router-link class="this-login" to="/user/register">
-                注册
-              </router-link>
-            </div>
-            <div class="head-nav-login">
-              <router-link class="this-login" to="/user/login">
-                登录
-              </router-link>
-            </div>
-          </div>
-        </div>
-      </el-col>
-    </el-row>
+    <h1 style="margin: 0;">网吧管理系统</h1>
+    <div></div>
   </div>
 </template>
 

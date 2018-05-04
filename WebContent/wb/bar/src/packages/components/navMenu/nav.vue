@@ -47,5 +47,11 @@
   .head-link{
     text-decoration: none;
   }
+  .el-menu-item{
+    text-align: left;
+  }
+  .el-menu-item:hover{
+    background-color: cadetblue !important;
+  }
 
 </style>

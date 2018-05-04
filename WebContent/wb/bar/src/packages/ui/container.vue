@@ -3,8 +3,7 @@
       <navMenu></navMenu>
     <el-container>
       <el-header>
-        <h1 style="margin: 0;">网吧管理系统</h1>
-        <div></div>
+        <Headers/>
       </el-header>
       <el-main>
         <router-view/>
@@ -15,6 +14,7 @@
 
 <script>
   import navMenu from '../components/navMenu/nav'
+  import Headers from './Headers'
 
   export default {
     name: 'container',
@@ -24,7 +24,8 @@
       }
     },
     components: {
-      navMenu
+      navMenu,
+      Headers
     },
     methods: {},
     mounted () {
