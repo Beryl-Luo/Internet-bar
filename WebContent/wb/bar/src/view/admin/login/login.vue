@@ -20,8 +20,7 @@
           style="text-align: left"></el-checkbox>
       </el-form-item>
       <el-form-item>
-        <el-button style="width: 100%;" type="primary" @click.native.prevent="submitForm('ruleForm')"
-                   :loading="loading">登陆
+        <el-button style="width: 100%;" type="primary" @click.native.prevent="submitForm('ruleForm')">登陆
         </el-button>
       </el-form-item>
     </el-form>
@@ -29,6 +28,7 @@
 </template>
 
 <script>
+  import {LoginApi} from './api'
   export default {
     name: 'Login',
     components: {
@@ -37,7 +37,6 @@
     /** state 默认信息 */
     data () {
       return {
-        loading: false,
         ruleForm: {
           login: '',
           password: '',
@@ -45,8 +44,7 @@
         },
         rules: {
           login: [
-            {required: true, message: '请输入登陆账户', trigger: 'blur'},
-            {min: 6, max: 12, message: '长度在 6 到 12 个字符', trigger: 'blur'}
+            {required: true, message: '请输入登陆账户', trigger: 'blur'}
           ],
           password: [
             {required: true, message: '请输入登陆密码', trigger: 'change'}
@@ -61,33 +59,29 @@
     },
     /** 方法事件 */
     methods: {
-      getUser () {
-        this.ruleForm = this.$store.getters.user
+      getUser: function () {
       },
-      submitForm (formName) {
+      submitForm: function (formName) {
         this.$refs[formName].validate((valid) => {
           if (valid) {
-            this.loading = true
-            this.$store.dispatch('accountLoginSubmit', {
-              login: '15223719447',
-              password: '12345678',
-              remember: true
-            }).then(() => {
-              this.loading = false
-              this.$router.push({path: '/'})
-            }).catch(() => {
-              this.loading = false
+            let array = {}
+            array.method = 'adminLogin'
+            array.username = this.ruleForm.login
+            array.password = this.ruleForm.password
+            LoginApi.Login(array).then(res => {
+              if (res.data.status) {
+                this.$message({
+                  message: res.data.message,
+                  type: 'success'
+                })
+                this.$router.push({path: '/admin'})
+              } else {
+                this.$message.error(res.data.message)
+                return false
+              }
             })
-          } else {
-            return false
           }
         })
-      }
-    },
-    /** 监听函数 */
-    watch: {
-      $route () {
-        this.path = this.$route.path.split('/')[2]
       }
     }
   }

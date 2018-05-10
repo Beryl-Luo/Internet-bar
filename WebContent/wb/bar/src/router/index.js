@@ -12,9 +12,24 @@ const router = new Router({
       ]
     },
     {
-      path: '/',
+      path: '/login',
       name: 'login',
       component: () => import('../view/admin/login/login')
+    },
+    {
+      path: '/',
+      name: 'netPlay',
+      component: () => import('../view/client/netPlay')
+    },
+    {
+      path: '/netPlayLogin/:id',
+      name: 'netPlayLogin',
+      component: () => import('../view/client/netPlay/login')
+    },
+    {
+      path: '/netPlayMessage/:id',
+      name: 'netPlayMessage',
+      component: () => import('../view/client/netPlay/message')
     }
   ]
 })
