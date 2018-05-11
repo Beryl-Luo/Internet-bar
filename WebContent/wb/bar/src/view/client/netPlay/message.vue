@@ -1,6 +1,6 @@
 <template>
     <div class="netPlayMessage">
-      <h2>{{message.idname}}号机器</h2>
+      <h2>{{message.number}}号机器</h2>
       <div style="min-height: 500px">
         <el-row :gutter="100" >
           <el-col :span="10">
@@ -25,7 +25,7 @@
         <el-row :gutter="100" >
           <el-col :span="10">
             <label class="el-col-8 label-own">收费(元/小时)</label>
-            <span>{{message.charging}}</span>
+            <span>{{message.charging*message.favourable}}</span>
           </el-col>
           <el-col :span="10">
             <label class="el-col-8 label-own">上网开始时间</label>
@@ -69,7 +69,7 @@
           array.computerId = this.message.computerId
           LoginApi.SelectMessageByComputerId(array).then(res => {
             this.message = JSON.parse(res.data.data)
-            if (JSON.parse(res.data.data).balance < JSON.parse(res.data.data).charging) {
+            if (JSON.parse(res.data.data).balance < (JSON.parse(res.data.data).charging * JSON.parse(res.data.data).favourable)) {
               this.$message.error('请充值！')
               this.checkout()
             } else {
@@ -90,8 +90,8 @@
           let array = {}
           array.method = 'updataBalance'
           array.userId = this.message.userId
-          if (this.message.balance - this.message.charging > 0) {
-            array.balance = this.message.balance - this.message.charging
+          if (this.message.balance - (this.message.charging * this.message.favourable) > 0) {
+            array.balance = this.message.balance - (this.message.charging * this.message.favourable)
             LoginApi.UpdataBalance(array).then(res => {
               if (res.data.status) {
                 this.$message({
@@ -105,7 +105,7 @@
             })
           } else {
             this.statusCel = 1
-            let surplusTime = (this.message.balance / this.message.charging) * 3600000
+            let surplusTime = (this.message.balance / (this.message.charging * this.message.favourable)) * 3600000
             array.balance = 0
             let timer2 = setInterval(() => {
               LoginApi.UpdataBalance(array).then(res => {
